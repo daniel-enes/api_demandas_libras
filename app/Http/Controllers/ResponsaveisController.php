@@ -92,7 +92,9 @@ class ResponsaveisController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $responsavel = Responsavel::getResource($id);
+        $responsavel->update($request->input('data.attributes'));
+        return new ResponsaveisResource($responsavel);
     }
 
     /**

@@ -22,3 +22,4 @@ Route::get('/', function () {
 Route::get('/responsaveis', [ResponsaveisController::class, 'index']);
 Route::get('/responsaveis/{id}', [ResponsaveisController::class, 'show']);
 Route::post('/responsaveis', [ResponsaveisController::class, 'store']);
+Route::patch('/responsaveis/{id}', [ResponsaveisController::class, 'update']);
