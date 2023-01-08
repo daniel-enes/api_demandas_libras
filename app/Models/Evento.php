@@ -15,4 +15,20 @@ class Evento extends Model
         'informacoes',
         'responsaveis_id',
     ];
+
+    /*
+    * Obtém o recurso de Responsavel ao qual o evento pertence
+    *
+    */
+    public function responsavel() {
+        return $this->belongsTo(Responsavel::class);
+    }
+    
+    /*
+    * Determina o relacionanto com Horario
+    *
+    */
+    public function horarios() {
+        return $this->hasMany(Horario::class);
+    }
 }

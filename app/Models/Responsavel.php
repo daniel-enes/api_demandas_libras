@@ -33,4 +33,13 @@ class Responsavel extends Model
         }
         return new ResponsaveisResource($responsavel);
     }
+
+    /*
+    * Obtém os eventos registrado por Responsavel
+    *
+    */
+
+    public function eventos() {
+        return $this->hasMany(Evento::class);
+    }
 }

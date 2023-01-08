@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ResponsaveisController;
+use App\Http\Controllers\EventosController;
+use App\Http\Controllers\HorariosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,8 +20,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/* Rotas para Responsavel */
+/* Rotas para Responsaveis */
 Route::get('/responsaveis', [ResponsaveisController::class, 'index']);
 Route::get('/responsaveis/{id}', [ResponsaveisController::class, 'show']);
 Route::post('/responsaveis', [ResponsaveisController::class, 'store']);
 Route::patch('/responsaveis/{id}', [ResponsaveisController::class, 'update']);
+
+/* Rotas para Eventos */
+Route::post('/eventos', [EventosController::class, 'store']);
+
+/* Rotas para Horarios */
+Route::post('/horarios', [HorariosController::class, 'store']);

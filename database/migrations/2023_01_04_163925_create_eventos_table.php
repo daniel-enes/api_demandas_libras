@@ -17,10 +17,10 @@ class CreateEventosTable extends Migration
             $table->id();
             $table->string('titulo');
             $table->text('sobre');
-            $table->string('informacoes');
-            $table->unsignedBigInteger('responsaveis_id');
+            $table->string('informacoes')->nullable();
+            $table->unsignedBigInteger('responsavel_id');
             $table->timestamps();
-            $table->foreign('responsaveis_id')->references('id')->on('responsaveis');
+            $table->foreign('responsavel_id')->references('id')->on('responsaveis');
         });
     }
 
