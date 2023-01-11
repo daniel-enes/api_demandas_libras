@@ -59,7 +59,8 @@ class EventosController extends Controller
      */
     public function show($id)
     {
-        //
+        $evento = Evento::find($id);
+        return new EventosResource($evento);
     }
 
     /**
