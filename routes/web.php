@@ -28,8 +28,10 @@ Route::patch('/responsaveis/{id}', [ResponsaveisController::class, 'update']);
 
 /* Rotas para Eventos */
 Route::post('/eventos', [EventosController::class, 'store']);
-/* Rotas para Eventos */
+Route::get('/eventos', [EventosController::class, 'index']);
 Route::get('/eventos/{id}', [EventosController::class, 'show']);
+
+
 
 /* Rotas para Horarios */
 Route::post('/horarios', [HorariosController::class, 'store']);

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Evento;
 use App\Models\Responsavel;
 use App\Http\Resources\EventosResource;
+use App\Http\Requests\CreateEventoRequest;
 
 class EventosController extends Controller
 {
@@ -17,7 +18,8 @@ class EventosController extends Controller
      */
     public function index()
     {
-        //
+        $eventos = Evento::all();
+        return EventosResource::collection($eventos);
     }
 
     /**
@@ -36,7 +38,7 @@ class EventosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateEventoRequest $request)
     {
         $evento = new Evento([
             'titulo' => $request->input('data.attributes.titulo'),

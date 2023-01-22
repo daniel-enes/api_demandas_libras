@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\HorariosResource;
 use App\Models\Horario;
 use App\Models\Evento;
+use App\Http\Requests\CreateHorarioRequest;
 
 class HorariosController extends Controller
 {
@@ -35,7 +36,7 @@ class HorariosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateHorarioRequest $request)
     {
         $horario = new Horario([
             'modalidade' => $request->input('data.attributes.modalidade'),
