@@ -8,6 +8,7 @@ use App\Models\Evento;
 use App\Models\Responsavel;
 use App\Http\Resources\EventosResource;
 use App\Http\Requests\CreateEventoRequest;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class EventosController extends Controller
 {
@@ -18,7 +19,12 @@ class EventosController extends Controller
      */
     public function index()
     {
-        $eventos = Evento::all();
+        /*$eventos = Evento::all();
+        return EventosResource::collection($eventos);*/
+        $eventos = QueryBuilder::for(Evento::class)
+        ->allowedSorts(['id'])
+        ->allowedFilters(['titulo'])
+        ->get();
         return EventosResource::collection($eventos);
     }
 
