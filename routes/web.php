@@ -30,8 +30,8 @@ Route::patch('/responsaveis/{id}', [ResponsaveisController::class, 'update']);
 Route::post('/eventos', [EventosController::class, 'store']);
 Route::get('/eventos', [EventosController::class, 'index']);
 Route::get('/eventos/{id}', [EventosController::class, 'show']);
-
-
+// Rota que retorna o total de recursos na coleção
+// Route::get('/eventos_getcount', [EventosController::class, 'getCount']);
 
 /* Rotas para Horarios */
 Route::post('/horarios', [HorariosController::class, 'store']);

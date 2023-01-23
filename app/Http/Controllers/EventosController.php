@@ -12,6 +12,17 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class EventosController extends Controller
 {
+    /* 
+    * Obtém o total de recursos na coleção
+    *
+    * @return response
+    
+    public function getCount() {
+        $total = Evento::getCount();
+        return $total;
+    }
+    */
+
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +35,7 @@ class EventosController extends Controller
         $eventos = QueryBuilder::for(Evento::class)
         ->allowedSorts(['id'])
         ->allowedFilters(['titulo'])
-        ->get();
+        ->jsonPaginate();
         return EventosResource::collection($eventos);
     }
 

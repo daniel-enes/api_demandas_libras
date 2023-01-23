@@ -16,6 +16,10 @@ class Evento extends Model
         'responsaveis_id',
     ];
 
+    public static function getCount() {
+        return self::all()->count();
+    }
+
     /*
     * Obtém o recurso de Responsavel ao qual o evento pertence
     *
