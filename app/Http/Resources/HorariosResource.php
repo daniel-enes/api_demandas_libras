@@ -28,7 +28,7 @@ class HorariosResource extends JsonResource
                 'observacoes' => $this->observacoes,
                 'created_at' => $this->created_at,
                 'updated_at' => $this->updated_at,
-            ]
+            ],
         ];
     }
 }

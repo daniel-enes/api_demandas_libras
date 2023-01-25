@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Responsavel;
 use App\Http\Resources\ResponsaveisResource;
+use App\Http\Resources\ResponsaveisCollection;
 use App\Http\Requests\CreateResponsavelRequest;
 use App\Http\Requests\UpdateResponsavelRequest;
 
@@ -25,7 +26,7 @@ class ResponsaveisController extends Controller
         }
         
         $responsaveis = Responsavel::all();
-        return ResponsaveisResource::collection($responsaveis);
+        return new ResponsaveisCollection($responsaveis);
     }
 
     /**

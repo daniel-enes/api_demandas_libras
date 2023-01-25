@@ -3,6 +3,8 @@
 use App\Http\Controllers\ResponsaveisController;
 use App\Http\Controllers\EventosController;
 use App\Http\Controllers\HorariosController;
+use App\Http\Controllers\ResponsaveisEventosRelationshipsController;
+use App\Http\Controllers\ResponsaveisEventosRelatedController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,3 +37,9 @@ Route::get('/eventos/{id}', [EventosController::class, 'show']);
 
 /* Rotas para Horarios */
 Route::post('/horarios', [HorariosController::class, 'store']);
+Route::get('/horarios', [HorariosController::class, 'index']);
+Route::get('/horarios/{id}', [HorariosController::class, 'show']);
+
+// Relacionamentos de Responsavel com Evento
+Route::get('/responsaveis/{id}/relationships/eventos', [ResponsaveisEventosRelationshipsController::class, 'index'])->name('responsaveis.relationships.eventos');
+Route::get('/responsaveis/{id}/eventos', [ResponsaveisEventosRelatedController::class, 'index'])->name('responsaveis.eventos');

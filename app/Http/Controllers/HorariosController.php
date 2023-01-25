@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Resources\HorariosResource;
+use App\Http\Resources\HorariosCollection;
 use App\Models\Horario;
 use App\Models\Evento;
 use App\Http\Requests\CreateHorarioRequest;
@@ -17,7 +18,8 @@ class HorariosController extends Controller
      */
     public function index()
     {
-        //
+        $horarios = Horario::all();
+        return new HorariosCollection($horarios);
     }
 
     /**
@@ -64,7 +66,8 @@ class HorariosController extends Controller
      */
     public function show($id)
     {
-        //
+        $horario =  Horario::find($id);
+        return new HorariosResource($horario);
     }
 
     /**

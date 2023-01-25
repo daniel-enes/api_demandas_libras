@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Evento;
 use App\Models\Responsavel;
 use App\Http\Resources\EventosResource;
+use App\Http\Resources\EventosCollection;
 use App\Http\Requests\CreateEventoRequest;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -36,7 +37,7 @@ class EventosController extends Controller
         ->allowedSorts(['id'])
         ->allowedFilters(['titulo'])
         ->jsonPaginate();
-        return EventosResource::collection($eventos);
+        return new EventosCollection($eventos);
     }
 
     /**
