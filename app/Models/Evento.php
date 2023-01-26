@@ -24,7 +24,8 @@ class Evento extends Model
     * Obtém o recurso de Responsavel ao qual o evento pertence
     *
     */
-    public function responsavel() {
+    public function responsavel() 
+    {
         return $this->belongsTo(Responsavel::class);
     }
     

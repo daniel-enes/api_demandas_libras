@@ -3,6 +3,10 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\HorariosIdentifierResource;
+use App\Http\Resources\HorariosResource;
+use App\Http\Resources\ResponsaveisIdentifierResource;
+use App\Http\Resources\ResponsaveisResource;
 
 class EventosResource extends JsonResource
 {
@@ -23,7 +27,38 @@ class EventosResource extends JsonResource
                 'informacoes' => $this->informacoes,
                 'created_at' =>  $this->created_at,
                 'updated_at' =>  $this->updated_at,   
-            ]
+            ],
+            'relationships' => [
+                'responsaveis' => [
+                    'links' => [
+                        'self' => route('eventos.relationships.responsaveis', ['id' => $this->id]),
+                        'related' => route('eventos.responsaveis', ['id' => $this->id])
+                    ],
+                    'data' => new ResponsaveisIdentifierResource($this->whenLoaded('responsavel')),
+                ],
+                'horarios' => [
+                    'links' => [
+                        'self' => route('eventos.relationships.horarios', ['id' => $this->id]),
+                        'related' => route('eventos.horarios', ['id' => $this->id])
+                    ],
+                    'data' => HorariosIdentifierResource::collection($this->whenLoaded('horarios')),
+                ],
+            ],
         ];
     }
+    
+    private function relationsResponsavel() {
+        return new ResponsaveisResource($this->whenLoaded('responsavel'));
+    }
+    
+    private function relationsHorarios() {
+        return HorariosResource::collection($this->whenLoaded('horarios'));
+    }
+
+    public function with($request) {
+        return [
+            'included' => [$this->relationsResponsavel(), $this->relationsHorarios()],
+        ];
+    }
+    
 }

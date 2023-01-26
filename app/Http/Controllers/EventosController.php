@@ -13,17 +13,6 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class EventosController extends Controller
 {
-    /* 
-    * Obtém o total de recursos na coleção
-    *
-    * @return response
-    
-    public function getCount() {
-        $total = Evento::getCount();
-        return $total;
-    }
-    */
-
     /**
      * Display a listing of the resource.
      *
@@ -79,8 +68,13 @@ class EventosController extends Controller
      */
     public function show($id)
     {
-        $evento = Evento::find($id);
+        //$evento = Evento::find($id);
+        
+        $evento = QueryBuilder::for(Evento::where('id', $id))
+        ->allowedIncludes(['responsavel', 'horarios'])
+        ->firstOrFail();
         return new EventosResource($evento);
+        
     }
 
     /**

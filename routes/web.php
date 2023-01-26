@@ -43,3 +43,12 @@ Route::get('/horarios/{id}', [HorariosController::class, 'show']);
 // Relacionamentos de Responsavel com Evento
 Route::get('/responsaveis/{id}/relationships/eventos', [ResponsaveisEventosRelationshipsController::class, 'index'])->name('responsaveis.relationships.eventos');
 Route::get('/responsaveis/{id}/eventos', [ResponsaveisEventosRelatedController::class, 'index'])->name('responsaveis.eventos');
+
+// Relacionamento de Evento com Responsavel
+Route::get('/eventos/{id}/relationships/responsaveis', [EventosResponsaveisRelationshipsController::class, 'index'])->name('eventos.relationships.responsaveis');
+Route::get('/eventos/{id}/responsaveis', [EventosResponsaveisRelatedController::class, 'index'])->name('eventos.responsaveis');
+
+// Relacionamentos de Evento com Horario
+Route::get('/eventos/{id}/relationships/horarios', [EventosHorariosRelationshipsController::class, 'index'])->name('eventos.relationships.horarios');
+Route::get('/eventos/{id}/horarios', [EventosHorariosRelatedController::class, 'index'])->name('eventos.horarios');
+
