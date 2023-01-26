@@ -56,8 +56,10 @@ class EventosResource extends JsonResource
     }
 
     public function with($request) {
+        $collection = collect($this->relationsHorarios());
+        $concatenated = $collection->concat([$this->relationsResponsavel()]);
         return [
-            'included' => [$this->relationsResponsavel(), $this->relationsHorarios()],
+            'included' => $concatenated->all(),
         ];
     }
     
