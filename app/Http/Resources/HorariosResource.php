@@ -15,8 +15,8 @@ class HorariosResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'types' => 'horarios',
+            'id' => (string)$this->id,
+            'type' => 'horarios',
             'attributes' => [
                 'modalidade' => $this->modalidade,
                 'dia' => $this->dia,
