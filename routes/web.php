@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InterpretesController;
 use App\Http\Controllers\ResponsaveisController;
 use App\Http\Controllers\EventosController;
 use App\Http\Controllers\HorariosController;
@@ -21,6 +22,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+/* Rotas para Interpretes */
+Route::get('/interpretes', [InterpretesController::class, 'index']);
+Route::post('/interpretes', [InterpretesController::class, 'store']);
 
 /* Rotas para Responsaveis */
 Route::get('/responsaveis', [ResponsaveisController::class, 'index']);

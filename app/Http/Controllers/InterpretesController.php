@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Responsavel;
-use App\Http\Resources\ResponsaveisResource;
-use App\Http\Resources\ResponsaveisCollection;
-use App\Http\Requests\CreateResponsavelRequest;
-use App\Http\Requests\UpdateResponsavelRequest;
+use App\Models\Interprete;
+use App\Http\Requests\CreateInterpreteRequest;
+use App\Http\Resources\InterpretesResource;
+use App\Http\Resources\InterpretesCollection;
+use Spatie\QueryBuilder\QueryBuilder;
 
-class ResponsaveisController extends Controller
+class InterpretesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,15 +18,18 @@ class ResponsaveisController extends Controller
      */
     public function index(Request $request)
     {
-        
-        //if($request->has('cpf') and $request->cpf != null )
-        if($request->has('cpf'))
-        {
-            return Responsavel::getResourceCPF($request->cpf);
+        if($request->has('sort')) {
+            $interpretes = QueryBuilder::for(Interprete::class)
+            ->allowedSorts(['nome'])
+            ->get();
+            //->allowedFilters(['titulo'])
+            //->jsonPaginate();
+            return new InterpretesCollection($interpretes);
         }
-        
-        $responsaveis = Responsavel::all();
-        return new ResponsaveisCollection($responsaveis);
+
+        $interpretes = Interprete::all();
+        return new InterpretesCollection($interpretes);
+
     }
 
     /**
@@ -36,7 +39,7 @@ class ResponsaveisController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -45,17 +48,15 @@ class ResponsaveisController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateResponsavelRequest $request)
+    public function store(CreateInterpreteRequest $request)
     {
-        $responsavel = Responsavel::create([
+        $interprete = Interprete::create([
             'nome' => $request->input('data.attributes.nome'),
             'telefone' => $request->input('data.attributes.telefone'),
             'email' => $request->input('data.attributes.email'),
-            'ocupacao' => $request->input('data.attributes.ocupacao'),
-            'cpf' => $request->input('data.attributes.cpf'),
-            'registro' => $request->input('data.attributes.registro'),
+            'status' => $request->input('data.attributes.status'),
         ]);
-        return new ResponsaveisResource($responsavel);
+        return new InterpretesResource($interprete);
     }
 
     /**
@@ -66,10 +67,7 @@ class ResponsaveisController extends Controller
      */
     public function show($id)
     {
-        //$responsavel = Responsavel::find($id);
-        $responsavel = Responsavel::getResource($id);
-        return new ResponsaveisResource($responsavel);
-        
+        //
     }
 
     /**
@@ -90,11 +88,9 @@ class ResponsaveisController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateResponsavelRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $responsavel = Responsavel::getResource($id);
-        $responsavel->update($request->input('data.attributes'));
-        return new ResponsaveisResource($responsavel);
+        //
     }
 
     /**

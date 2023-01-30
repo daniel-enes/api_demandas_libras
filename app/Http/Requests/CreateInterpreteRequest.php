@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateResponsavelRequest extends FormRequest
+class CreateInterpreteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,14 +25,12 @@ class CreateResponsavelRequest extends FormRequest
     {
         return [
             'data' => 'required|array',
-            'data.type' => 'required|in:responsaveis',
+            'data.type' => 'required|in:interpretes',
             'data.attributes' => 'required|array',
             'data.attributes.nome' => 'required|string',
             'data.attributes.telefone' => 'required|integer',
-            'data.attributes.email' => 'required|email',
-            'data.attributes.ocupacao' => 'required|string',
-            'data.attributes.cpf' => 'required|integer',
-            'data.attributes.registro' => 'nullable|integer'
+            'data.attributes.email' => 'required|email|unique:App\Models\Interprete,email',
+            'data.attributes.status' => 'required|string',
         ];
     }
 }
