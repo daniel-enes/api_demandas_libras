@@ -44,6 +44,7 @@ class HorariosResource extends JsonResource
                         )
                         
                     ],
+                    //'data' => HorariosIdentifierResource::collection($this->whenLoaded('interpretes')),
                     'data' => InterpretesIdentifierResource::collection($this->interpretes),
                 ],
             ],

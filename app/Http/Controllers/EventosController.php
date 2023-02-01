@@ -66,15 +66,18 @@ class EventosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //$evento = Evento::find($id);
         
-        $evento = QueryBuilder::for(Evento::where('id', $id))
-        ->allowedIncludes(['responsavel', 'horarios', 'interpretes'])
-        ->firstOrFail();
+        if($request->has('include')) {
+            $evento = QueryBuilder::for(Evento::where('id', $id))
+            ->allowedIncludes(['responsavel', 'horarios'])
+            ->firstOrFail();
+            return new EventosResource($evento);
+        }
+        
+        $evento = Evento::find($id);
         return new EventosResource($evento);
-        
     }
 
     /**

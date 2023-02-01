@@ -64,7 +64,7 @@ class HorariosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request,$id)
     {
         $horario =  Horario::find($id);
         return new HorariosResource($horario);
