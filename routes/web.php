@@ -7,6 +7,7 @@ use App\Http\Controllers\HorariosController;
 use App\Http\Controllers\ResponsaveisEventosRelationshipsController;
 use App\Http\Controllers\ResponsaveisEventosRelatedController;
 use App\Http\Controllers\HorariosInterpretesRelationshipsController;
+use App\Http\Controllers\HorariosInterpretesRelatedController;
 use Illuminate\Support\Facades\Route;
 
 /*

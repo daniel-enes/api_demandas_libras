@@ -71,7 +71,7 @@ class EventosController extends Controller
         //$evento = Evento::find($id);
         
         $evento = QueryBuilder::for(Evento::where('id', $id))
-        ->allowedIncludes(['responsavel', 'horarios'])
+        ->allowedIncludes(['responsavel', 'horarios', 'interpretes'])
         ->firstOrFail();
         return new EventosResource($evento);
         

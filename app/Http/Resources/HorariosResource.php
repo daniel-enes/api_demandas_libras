@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\InterpretesIdentifierResource;
+use App\Http\Resources\InterpretesResource;
 
 class HorariosResource extends JsonResource
 {
@@ -34,18 +35,27 @@ class HorariosResource extends JsonResource
                 'interpretes' => [
                     'links' => [
                         'self' => route (
-                            horarios.realationships.interpretes, 
+                            'horarios.relationships.interpretes', 
                             ['id' => $this->id]
                         ),
                         'related' => route(
-                            horarios.interpretes,
+                            'horarios.interpretes',
                             ['id' => $this->id]
                         )
                         
                     ],
-                    'data' => InterpretesIdentifierResource::collection($his->interpretes),
+                    'data' => InterpretesIdentifierResource::collection($this->interpretes),
                 ],
             ],
+        ];
+    }
+    private function relationsInterpretes() {
+        return InterpretesResource::collection($this->whenLoaded('interpretes'));
+    }
+
+    public function with($request) {
+        return [
+            'included' => $this->relationsInterpretes(),
         ];
     }
 }
