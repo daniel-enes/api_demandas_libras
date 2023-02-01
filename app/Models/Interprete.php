@@ -15,4 +15,9 @@ class Interprete extends Model
         'email',
         'status',
     ];
+
+    public function horarios() 
+    {
+        return $this->belongsToMany(Horario::class);
+    }
 }

@@ -28,4 +28,9 @@ class Horario extends Model
     public function evento() {
         return $this->belongsTo(Evento::class);
     }
+
+    public function interpretes()
+    {
+        return $this->belongsToMany(Interprete::class);
+    }
 }

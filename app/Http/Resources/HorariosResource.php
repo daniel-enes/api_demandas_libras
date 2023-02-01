@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\InterpretesIdentifierResource;
 
 class HorariosResource extends JsonResource
 {
@@ -28,6 +29,22 @@ class HorariosResource extends JsonResource
                 'observacoes' => $this->observacoes,
                 'created_at' => $this->created_at,
                 'updated_at' => $this->updated_at,
+            ],
+            'realationships' => [
+                'interpretes' => [
+                    'links' => [
+                        'self' => route (
+                            horarios.realationships.interpretes, 
+                            ['id' => $this->id]
+                        ),
+                        'related' => route(
+                            horarios.interpretes,
+                            ['id' => $this->id]
+                        )
+                        
+                    ],
+                    'data' => InterpretesIdentifierResource::collection($his->interpretes),
+                ],
             ],
         ];
     }

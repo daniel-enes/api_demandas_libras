@@ -6,6 +6,7 @@ use App\Http\Controllers\EventosController;
 use App\Http\Controllers\HorariosController;
 use App\Http\Controllers\ResponsaveisEventosRelationshipsController;
 use App\Http\Controllers\ResponsaveisEventosRelatedController;
+use App\Http\Controllers\HorariosInterpretesRelationshipsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -56,4 +57,19 @@ Route::get('/eventos/{id}/responsaveis', [EventosResponsaveisRelatedController::
 // Relacionamentos de Evento com Horario
 Route::get('/eventos/{id}/relationships/horarios', [EventosHorariosRelationshipsController::class, 'index'])->name('eventos.relationships.horarios');
 Route::get('/eventos/{id}/horarios', [EventosHorariosRelatedController::class, 'index'])->name('eventos.horarios');
+
+// Relacionamento de Horario com Interprete RELATIONSHIPS
+Route::get('/horarios/{id}/relationships/interpretes', 
+[HorariosInterpretesRelationshipsController::class, 'index'])
+->name('horarios.relationships.interpretes');
+
+Route::patch('/horarios/{id}/relationships/interpretes', 
+[HorariosInterpretesRelationshipsController::class, 'update'])
+->name('horarios.relationships.interpretes');
+
+// Relacionamento de Horario com Interprete RELATED
+Route::get('/horarios/{id}/interpretes', 
+[HorariosInterpretesRelatedController::class, 'index'])
+->name('horarios.interpretes');
+
 
