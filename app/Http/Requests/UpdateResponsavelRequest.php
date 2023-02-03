@@ -30,7 +30,7 @@ class UpdateResponsavelRequest extends FormRequest
             'data.attributes' => 'required|array',
             'data.attributes.nome' => 'required|string',
             'data.attributes.telefone' => 'required|integer',
-            'data.attributes.email' => 'required|email|unique:App\Models\Responsavel,email',
+            'data.attributes.email' => 'required|email',
             'data.attributes.ocupacao' => 'required|string',
             'data.attributes.cpf' => 'required|integer',
             'data.attributes.registro' => 'nullable|integer'
