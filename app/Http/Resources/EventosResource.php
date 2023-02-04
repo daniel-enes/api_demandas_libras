@@ -41,21 +41,21 @@ class EventosResource extends JsonResource
                         'self' => route('eventos.relationships.horarios', ['id' => $this->id]),
                         'related' => route('eventos.horarios', ['id' => $this->id])
                     ],
-                    //'data' => HorariosIdentifierResource::collection($this->whenLoaded('horarios')),
-                    'data' => HorariosIdentifierResource::collection($this->horarios),
+                    'data' => HorariosIdentifierResource::collection($this->whenLoaded('horarios')),
+                    //'data' => HorariosIdentifierResource::collection($this->horarios),
                 ],
             ],
         ];
     }
     
     private function relationsResponsavel() {
-        //return new ResponsaveisResource($this->whenLoaded('responsavel'));
-        return new ResponsaveisResource($this->responsavel);
+        return new ResponsaveisResource($this->whenLoaded('responsavel'));
+        //return new ResponsaveisResource($this->responsavel);
     }
     
     private function relationsHorarios() {
-        //return HorariosResource::collection($this->whenLoaded('horarios'));
-        return HorariosResource::collection($this->horarios);
+        return HorariosResource::collection($this->whenLoaded('horarios'));
+        //return HorariosResource::collection($this->horarios);
     }
 
     public function with($request) {
