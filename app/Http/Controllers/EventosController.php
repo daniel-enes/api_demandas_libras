@@ -69,15 +69,15 @@ class EventosController extends Controller
     public function show(Request $request, $id)
     {
         
-        if($request->has('include')) {
+        //if($request->has('include')) {
             $evento = QueryBuilder::for(Evento::where('id', $id))
             ->allowedIncludes(['responsavel', 'horarios'])
             ->firstOrFail();
             return new EventosResource($evento);
-        }
+        //}
         
-        $evento = Evento::find($id);
-        return new EventosResource($evento);
+        //$evento = Evento::find($id);
+        //return new EventosResource($evento);
     }
 
     /**
