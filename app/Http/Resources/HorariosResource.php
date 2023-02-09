@@ -16,12 +16,13 @@ class HorariosResource extends JsonResource
      */
     public function toArray($request)
     {
+      $data = date_create($this->dia);
         return [
             'id' => (string)$this->id,
             'type' => 'horarios',
             'attributes' => [
                 'modalidade' => $this->modalidade,
-                'dia' => $this->dia,
+                'dia' => date_format($data, "d/m/Y"),
                 'inicia' => $this->inicia,
                 'termina' => $this->termina,
                 'local' => $this->local,
