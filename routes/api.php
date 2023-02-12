@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -13,7 +14,17 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+/*
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+*/
+Route::middleware('auth:api')->prefix('v1')->group(function(){
+  Route::get('/user', function (Request $request) {
+    return $request->user();
+  });
+
+  //Rotas eventos
+  Route::get('/eventos/{id}', [EventosController::class, 'show']);
+
 });
