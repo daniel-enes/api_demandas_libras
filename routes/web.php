@@ -8,6 +8,9 @@ use App\Http\Controllers\ResponsaveisEventosRelationshipsController;
 use App\Http\Controllers\ResponsaveisEventosRelatedController;
 use App\Http\Controllers\HorariosInterpretesRelationshipsController;
 use App\Http\Controllers\HorariosInterpretesRelatedController;
+use App\Models\Evento;
+use App\Models\Responsavel;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,10 +40,7 @@ Route::patch('/responsaveis/{id}', [ResponsaveisController::class, 'update']);
 
 /* Rotas para Eventos */
 Route::post('/eventos', [EventosController::class, 'store']);
-Route::get('/eventos', [EventosController::class, 'index']);
-Route::get('/eventos/{id}', [EventosController::class, 'show']);
-// Rota que retorna o total de recursos na coleção
-// Route::get('/eventos_getcount', [EventosController::class, 'getCount']);
+//Route::get('/eventos', [EventosController::class, 'index']);
 
 /* Rotas para Horarios */
 Route::post('/horarios', [HorariosController::class, 'store']);
@@ -72,5 +72,4 @@ Route::patch('/horarios/{id}/relationships/interpretes',
 Route::get('/horarios/{id}/interpretes', 
 [HorariosInterpretesRelatedController::class, 'index'])
 ->name('horarios.interpretes');
-
 

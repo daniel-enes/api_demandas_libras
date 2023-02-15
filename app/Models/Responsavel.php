@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-// use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Resources\ResponsaveisResource;
 
 class Responsavel extends Model
 {
-    //use HasFactory;
+    use HasFactory;
 
     /* A tabela associado com o modelo */
     protected $table = 'responsaveis';

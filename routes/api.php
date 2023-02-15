@@ -25,6 +25,7 @@ Route::middleware('auth:api')->prefix('v1')->group(function(){
   });
 
   //Rotas eventos
+  Route::get('/eventos', [EventosController::class, 'index']);
   Route::get('/eventos/{id}', [EventosController::class, 'show']);
 
 });
